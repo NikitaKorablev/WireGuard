@@ -87,7 +87,7 @@ function installQuestions() {
 		read -rp "Server's WireGuard IPv4: " -e -i 80.249.146.241 SERVER_WG_IPV4
 	done
 
-	until [[ ${SERVER_WG_IPV6} =~ ^([a-f0-9]{1,4}:){3,4}: ]]; do
+	until [[ ${SERVER_WG_IPV6} =~ ^([a-f0-24]{1,4}:){3,4}: ]]; do
 		read -rp "Server's WireGuard IPv6: " -e -i fe80::f816:3eff:fef4:4eb SERVER_WG_IPV6
 	done
 
@@ -99,10 +99,10 @@ function installQuestions() {
 
 	# Adguard DNS by default
 	until [[ ${CLIENT_DNS_1} =~ ^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$ ]]; do
-		read -rp "First DNS resolver to use for the clients: " -e -i 94.140.14.14 CLIENT_DNS_1
+		read -rp "First DNS resolver to use for the clients: " -e -i 8.8.8.8 CLIENT_DNS_1
 	done
 	until [[ ${CLIENT_DNS_2} =~ ^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$ ]]; do
-		read -rp "Second DNS resolver to use for the clients (optional): " -e -i 94.140.15.15 CLIENT_DNS_2
+		read -rp "Second DNS resolver to use for the clients (optional): " -e -i 8.8.4.4 CLIENT_DNS_2
 		if [[ ${CLIENT_DNS_2} == "" ]]; then
 			CLIENT_DNS_2="${CLIENT_DNS_1}"
 		fi
